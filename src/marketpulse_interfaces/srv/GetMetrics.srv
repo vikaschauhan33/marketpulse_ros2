@@ -1,0 +1,7 @@
+bool dummy
+---
+bool ok
+string message
+uint64 ticks_seen
+uint64 signals_sent
+float64 avg_processing_us

@@ -1,0 +1,55 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+.colcon/
+
+# C++ artifacts
+*.o
+*.so
+*.a
+*.dylib
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ROS 2 specific
+*.bag
+*.db3
+*.mcap
+
+# Testing
+Testing/
+test_results/
+*.test_result
+
+# Temporary files
+*.tmp
+*.bak
+*.orig

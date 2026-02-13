@@ -1,0 +1,8 @@
+market_data_feed:
+  ros__parameters:
+    symbols: ["AAPL", "MSFT", "NVDA"]
+    tick_rate_hz: 50.0
+    price_start: 100.0
+    price_volatility: 0.5
+    rng_seed: 42
+    enabled: true

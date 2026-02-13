@@ -1,0 +1,5 @@
+strategy_engine:
+  ros__parameters:
+    window_size: 20
+    signal_threshold: 1.5
+    max_symbols: 100

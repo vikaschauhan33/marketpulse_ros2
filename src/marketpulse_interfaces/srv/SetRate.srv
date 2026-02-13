@@ -1,0 +1,4 @@
+float64 tick_rate_hz
+---
+bool ok
+string message

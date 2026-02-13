@@ -1,0 +1,18 @@
+#include "strategy_engine/strategy_engine_node.hpp"
+#include <rclcpp/rclcpp.hpp>
+
+int main(int argc, char ** argv)
+{
+  rclcpp::init(argc, argv);
+  
+  rclcpp::NodeOptions options;
+  auto node = std::make_shared<strategy_engine::StrategyEngineNode>(options);
+  
+  // Use MultiThreadedExecutor for concurrent callback processing
+  rclcpp::executors::MultiThreadedExecutor executor;
+  executor.add_node(node);
+  executor.spin();
+  
+  rclcpp::shutdown();
+  return 0;
+}
