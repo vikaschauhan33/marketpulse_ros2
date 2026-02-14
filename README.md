@@ -26,6 +26,7 @@ MarketPulse consists of 3 nodes forming a data processing pipeline:
 **2. strategy_engine_node**
 - Consumes ticks and computes rolling statistics
 - Generates BUY/SELL/HOLD signals based on z-score
+- **Signal Damping**: Only publishes to `/signals` when the recommended side changes
 - Publishes to `/signals` (RELIABLE QoS)
 - Uses MultiThreadedExecutor with callback groups
 - Service: `/strategy/get_metrics`
@@ -247,7 +248,7 @@ ros2 topic hz /ticks
 ros2 service call /strategy/get_metrics marketpulse_interfaces/srv/GetMetrics "{dummy: true}"
 ```
 
-**Note:** Signals only appear after rolling window fills (20 ticks by default)
+**Note:** Signals only appear after the rolling window fills (20 ticks) AND the recommendation changes from its previous state.
 
 ### No orders appearing
 
