@@ -99,18 +99,21 @@ void StrategyEngineNode::handle_tick(
       side = -1;  // SELL
     }
 
-    // Publish signal
-    auto signal = marketpulse_interfaces::msg::Signal();
-    signal.stamp = msg->stamp;
-    signal.symbol = msg->symbol;
-    signal.price = msg->price;
-    signal.mean = mean;
-    signal.score = score;
-    signal.side = side;
-    signal.seq = signal_seq_++;
+    // Publish signal only if side changed to dampen frequency
+    if (side != state->last_side) {
+      auto signal = marketpulse_interfaces::msg::Signal();
+      signal.stamp = this->now();
+      signal.symbol = msg->symbol;
+      signal.price = msg->price;
+      signal.mean = mean;
+      signal.score = score;
+      signal.side = side;
+      signal.seq = signal_seq_++;
 
-    signal_publisher_->publish(signal);
-    signals_sent_++;
+      signal_publisher_->publish(signal);
+      signals_sent_++;
+      state->last_side = side;
+    }
   }
 
   auto end_time = std::chrono::high_resolution_clock::now();

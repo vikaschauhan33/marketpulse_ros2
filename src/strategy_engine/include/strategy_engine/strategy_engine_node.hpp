@@ -19,6 +19,7 @@ struct SymbolState
 {
   RollingWindow window;
   uint64_t ticks_seen{0};
+  int8_t last_side{0};
   
   explicit SymbolState(size_t window_size) : window(window_size) {}
 };

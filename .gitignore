@@ -53,3 +53,6 @@ test_results/
 *.tmp
 *.bak
 *.orig
+
+# Excluded packages
+src/ros2_basics_cpp/my_first_cpp_pkg/

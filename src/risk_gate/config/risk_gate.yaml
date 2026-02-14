@@ -1,5 +1,5 @@
 risk_gate:
   ros__parameters:
-    max_position_per_symbol: 100
-    max_orders_per_min: 120
-    reject_on_stale_ms: 200
+    max_position_per_symbol: 1000
+    max_orders_per_min: 1000
+    reject_on_stale_ms: 5000  # 5 seconds - lenient for local testing

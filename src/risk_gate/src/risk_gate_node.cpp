@@ -108,11 +108,14 @@ void RiskGateNode::handle_signal(
 
 bool RiskGateNode::check_staleness(const builtin_interfaces::msg::Time & signal_time)
 {
-  auto now = this->now();
-  auto signal_age_ms = (now.seconds() - signal_time.sec) * 1000 +
-                       (now.nanoseconds() - signal_time.nanosec) / 1000000;
+  rclcpp::Time now = this->now();
+  rclcpp::Time signal_stamp(signal_time);
   
-  return signal_age_ms <= reject_on_stale_ms_;
+  // Use duration arithmetic to avoid overflow issues
+  auto age = now - signal_stamp;
+  int64_t age_ms = age.nanoseconds() / 1000000;
+  
+  return age_ms <= static_cast<int64_t>(reject_on_stale_ms_);
 }
 
 bool RiskGateNode::check_rate_limit()
